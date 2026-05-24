@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Verjaardag Cadeau Keuzespel</title>
+  <title>Verjaardag Cadeau Spel</title>
+
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -23,32 +22,29 @@
 
     .card {
       width: 100%;
-      max-width: 680px;
+      max-width: 760px;
       background: white;
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 32px;
       box-shadow: 0 18px 45px rgba(0,0,0,0.12);
       text-align: center;
+      overflow: hidden;
     }
 
-    h1 {
-      margin-top: 0;
-      font-size: 32px;
-    }
+    h1 { margin-top: 0; font-size: 32px; }
+    h2 { font-size: 28px; margin-bottom: 8px; }
 
     p {
       font-size: 18px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     button {
       border: none;
       border-radius: 999px;
-      padding: 14px 22px;
+      padding: 14px 24px;
       margin: 8px;
       font-size: 16px;
       cursor: pointer;
@@ -60,61 +56,6 @@
     button:hover {
       transform: translateY(-2px);
       opacity: 0.92;
-    }
-
-    .choice-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .choice {
-      background: #fafafa;
-      border: 2px solid #eee;
-      border-radius: 20px;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      min-height: 165px;
-    }
-
-    .choice:hover {
-      transform: translateY(-4px);
-      border-color: #222;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .emoji {
-      font-size: 46px;
-      margin-bottom: 10px;
-    }
-
-    .choice h2 {
-      margin: 8px 0;
-      font-size: 20px;
-    }
-
-    .choice p {
-      font-size: 14px;
-      margin: 0;
-      color: #555;
-    }
-
-    .result-box {
-      background: #f7f7f7;
-      border-radius: 20px;
-      padding: 24px;
-      margin-top: 24px;
-    }
-
-    .result-emoji {
-      font-size: 70px;
-    }
-
-    .small {
-      font-size: 14px;
-      color: #666;
     }
 
     .progress {
@@ -131,16 +72,160 @@
       background: #222;
       transition: width 0.3s ease;
     }
+
+    .result-box, .reveal-box {
+      background: #f7f7f7;
+      border-radius: 22px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .emoji {
+      font-size: 68px;
+      margin-bottom: 10px;
+    }
+
+    .small {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .leuven-hero {
+      position: relative;
+      margin-top: 24px;
+      min-height: 360px;
+      border-radius: 24px;
+      overflow: hidden;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.45)),
+        url("leuven.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .leuven-hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 70px;
+      height: 100%;
+      background-image: url("belgische-vlag.png");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.95;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    }
+
+    .hero-content h2 {
+      font-size: 34px;
+      margin: 0 0 14px;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .final-hero {
+      position: relative;
+      margin-top: 24px;
+      border-radius: 24px;
+      overflow: hidden;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.45)),
+        url("leuven.jpg");
+      background-size: cover;
+      background-position: center;
+      padding: 42px 22px;
+    }
+
+    .final-card {
+      background: rgba(255,255,255,0.94);
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+    }
+
+    .flag-small {
+      width: 34px;
+      height: 24px;
+      object-fit: cover;
+      vertical-align: middle;
+      margin: 0 8px;
+      border-radius: 3px;
+    }
+
+    .leuven-title {
+      font-size: 42px;
+      color: #d59a1a;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .date-ideas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .idea {
+      background: white;
+      border: 2px solid #eee;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .idea strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .idea span {
+      font-size: 14px;
+      color: #555;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 22px; }
+      h1 { font-size: 26px; }
+      .leuven-hero { min-height: 320px; }
+      .hero-content h2 { font-size: 28px; }
+      .leuven-title { font-size: 34px; }
+    }
   </style>
 </head>
+
 <body>
   <div class="card">
+
     <section id="intro">
       <h1>🎁 Jouw verjaardagscadeau-keuzespel</h1>
-      <p>
-        Je krijgt vandaag geen standaard cadeau, maar een keuze-avontuur.
-        Beantwoord een paar korte vragen en ontdek welk uitje het beste bij jou past.
-      </p>
+      <p>Ik had meerdere ideeën voor jouw verjaardagscadeau.</p>
+      <p>Sommige zijn relaxed, sommige creatief en sommige misschien een beetje sportief.</p>
+      <p>Dus in plaats van gewoon iets te kiezen, mag jij eerst een paar vragen beantwoorden.</p>
+      <p>Dan kijken we welk cadeau het beste bij jou past 😄</p>
       <button onclick="startGame()">Start het spel</button>
     </section>
 
@@ -155,78 +240,179 @@
       <div id="answerButtons"></div>
     </section>
 
-    <section id="resultScreen" class="hidden">
-      <h1>De keuze is gemaakt...</h1>
-      <div class="result-box">
-        <div id="resultEmoji" class="result-emoji"></div>
-        <h1 id="resultTitle"></h1>
-        <p id="resultDescription"></p>
-      </div>
-      <p class="small">Niet tevreden? Dan mag je natuurlijk opnieuw spelen 😉</p>
-      <button onclick="resetGame()">Opnieuw spelen</button>
+    <section id="thinkingScreen" class="hidden">
+      <h1>Even rekenen...</h1>
+      <div class="emoji">🤔</div>
+      <p>Je antwoorden worden zorgvuldig geanalyseerd.</p>
+      <p>Er zijn een paar sterke kanshebbers...</p>
+      <button onclick="showFakeResult()">Bekijk de uitslag</button>
     </section>
+
+    <section id="fakeResultScreen" class="hidden">
+      <h1>De voorlopige uitslag</h1>
+
+      <div class="result-box">
+        <div id="fakeEmoji" class="emoji"></div>
+        <h2 id="fakeTitle"></h2>
+        <p id="fakeDescription"></p>
+      </div>
+
+      <p>Dit zou dus echt een goed cadeau zijn...</p>
+      <p>Maar er is nog iets.</p>
+
+      <button onclick="showBelgiumTwist()">Wacht... er is meer</button>
+    </section>
+
+    <section id="belgiumScreen" class="hidden">
+      <h1>🇧🇪 Kleine plot twist</h1>
+
+      <div class="reveal-box">
+        <p>In de eerste jaren van onze relatie hebben we samen al meerdere Belgische steden uitgespeeld.</p>
+        <p>De ene stad was wat leuker dan de andere...</p>
+        <p><em>*kuch* Luik *kuch*</em> 👀</p>
+        <p>Maar er is nog een stad waar we samen nog niet zijn geweest.</p>
+        <p>En die schijnt dus wél heel leuk, gezellig en mooi te zijn.</p>
+      </div>
+
+      <div class="leuven-hero">
+        <div class="hero-content">
+          <h2>Maar er is nog één stad...</h2>
+          <p>Een stad vol gezelligheid, mooie straten, lekker eten en goede vibes.</p>
+          <p>Volgens iedereen: echt een aanrader.</p>
+          <p>🤍</p>
+        </div>
+      </div>
+
+      <button onclick="showFinalReveal()">Onthul mijn echte cadeau</button>
+    </section>
+
+    <section id="finalScreen" class="hidden">
+      <h1>🎉 Jouw echte verjaardagscadeau</h1>
+
+      <div class="final-hero">
+        <div class="final-card">
+          <div class="emoji">🎁</div>
+
+          <p><strong>Jouw echte verjaardagscadeau:</strong></p>
+
+          <h2>Een nachtje weg naar</h2>
+
+          <div class="leuven-title">
+            <img src="belgische-vlag.png" class="flag-small" alt="Belgische vlag">
+            Leuven
+            <img src="belgische-vlag.png" class="flag-small" alt="Belgische vlag">
+          </div>
+
+          <p>
+            Samen genieten, rondslenteren, lekker eten, iets drinken en herinneringen maken
+            in een stad waar we nog nooit samen zijn geweest.
+          </p>
+
+          <p>
+            Hopelijk halen we een veel betere score dan Luik 😄
+          </p>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <p>Maar eerlijk is eerlijk...</p>
+        <p>De andere opties waren geen nepopties. Die staan gewoon op de lijst als toekomstige date-ideeën.</p>
+
+        <div class="date-ideas">
+          <div class="idea">
+            <strong>🚤 Dagje varen</strong>
+            <span>Relaxed samen het water op met hapjes en drankjes.</span>
+          </div>
+
+          <div class="idea">
+            <strong>🍫 Bonbon workshop</strong>
+            <span>Samen chocolade maken, proeven en waarschijnlijk veel te veel eten.</span>
+          </div>
+
+          <div class="idea">
+            <strong>⛳ Golf beginnerslessen</strong>
+            <span>Samen iets nieuws leren en kijken wie er stiekem talent heeft.</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="small">Gefeliciteerd lieverd ❤️</p>
+
+      <button onclick="resetGame()">Nog een keer spelen</button>
+    </section>
+
   </div>
 
   <script>
     const gifts = {
       varen: {
-        title: "Een dagje varen in Zwolle",
+        title: "Dagje varen in Zwolle",
         emoji: "🚤",
-        description: "Samen het water op, lekker relaxed varen door Zwolle, met drinken en snacks erbij. Romantisch, rustig en gezellig."
+        description: "Samen relaxed het water op, met drankjes, snacks en lekker genieten van Zwolle vanaf het water."
       },
       bonbons: {
-        title: "Een workshop bonbons maken",
+        title: "Workshop bonbons maken",
         emoji: "🍫",
-        description: "Samen iets lekkers maken, proeven en waarschijnlijk met een doosje zelfgemaakte bonbons naar huis. Creatief en gezellig."
+        description: "Samen chocolade maken, proeven en waarschijnlijk met een doosje zelfgemaakte bonbons naar huis."
       },
       golf: {
         title: "4 beginnerslessen golf",
         emoji: "⛳",
-        description: "Een sportieve mini-uitdaging: vier keer samen leren golfen. Leuk als je iets nieuws wilt proberen en er vaker op uit wilt."
+        description: "Samen iets nieuws leren, een beetje sportief doen en kijken of er verborgen golftalent aanwezig is."
       }
     };
 
     const questions = [
       {
         title: "Vraag 1",
-        text: "Waar heb je op dit moment het meeste zin in?",
+        text: "Wat klinkt voor jou het meest als een geslaagde date?",
         answers: [
-          { text: "Lekker buiten ontspannen", points: { varen: 2, golf: 1 } },
-          { text: "Iets lekkers maken", points: { bonbons: 2 } },
-          { text: "Iets nieuws leren", points: { golf: 2, bonbons: 1 } }
+          { text: "Lekker ontspannen samen", points: { varen: 3 } },
+          { text: "Iets creatiefs en lekkers", points: { bonbons: 3 } },
+          { text: "Iets actiefs en nieuws", points: { golf: 3 } }
         ]
       },
       {
         title: "Vraag 2",
-        text: "Wat past het beste bij jouw ideale dagje uit?",
+        text: "Welke sfeer past het beste bij jou?",
         answers: [
-          { text: "Rustig, gezellig en samen kletsen", points: { varen: 2 } },
-          { text: "Creatief bezig zijn", points: { bonbons: 2 } },
-          { text: "Een beetje actief en competitief", points: { golf: 2 } }
+          { text: "Zomer, water en hapjes", points: { varen: 3 } },
+          { text: "Warm, gezellig en chocolade", points: { bonbons: 3 } },
+          { text: "Buiten, sportief en lachen", points: { golf: 3 } }
         ]
       },
       {
         title: "Vraag 3",
-        text: "Welke sfeer spreekt je het meeste aan?",
+        text: "Wat vind je leuker?",
         answers: [
-          { text: "Zomer, water en hapjes mee", points: { varen: 3 } },
-          { text: "Chocolade, gezelligheid en proeven", points: { bonbons: 3 } },
-          { text: "Buiten sporten en beter worden", points: { golf: 3 } }
+          { text: "Samen rustig kletsen", points: { varen: 2 } },
+          { text: "Samen iets maken", points: { bonbons: 2 } },
+          { text: "Samen iets leren", points: { golf: 2 } }
+        ]
+      },
+      {
+        title: "Vraag 4",
+        text: "Wat moet een cadeau vooral zijn?",
+        answers: [
+          { text: "Gezellig en relaxed", points: { varen: 2 } },
+          { text: "Lief en origineel", points: { bonbons: 2 } },
+          { text: "Verrassend en actief", points: { golf: 2 } }
         ]
       },
       {
         title: "Laatste vraag",
-        text: "Wat zou je later het leukst vinden om over te vertellen?",
+        text: "Wat vind je het leukst om later op terug te kijken?",
         answers: [
-          { text: "Dat we samen Zwolle vanaf het water hebben gezien", points: { varen: 2 } },
-          { text: "Dat we zelf bonbons hebben gemaakt", points: { bonbons: 2 } },
-          { text: "Dat we samen aan golf zijn begonnen", points: { golf: 2 } }
+          { text: "Een mooie dag samen", points: { varen: 2 } },
+          { text: "Iets grappigs dat we samen hebben gedaan", points: { bonbons: 2 } },
+          { text: "Een nieuwe ervaring samen", points: { golf: 2 } }
         ]
       }
     ];
 
     let currentQuestion = 0;
     let score = { varen: 0, bonbons: 0, golf: 0 };
+    let winner = "varen";
 
     function startGame() {
       document.getElementById("intro").classList.add("hidden");
@@ -236,10 +422,11 @@
 
     function showQuestion() {
       const question = questions[currentQuestion];
+
       document.getElementById("questionTitle").innerText = question.title;
       document.getElementById("questionText").innerText = question.text;
 
-      const progress = ((currentQuestion) / questions.length) * 100;
+      const progress = (currentQuestion / questions.length) * 100;
       document.getElementById("progressBar").style.width = progress + "%";
 
       const answerButtons = document.getElementById("answerButtons");
@@ -263,28 +450,47 @@
       if (currentQuestion < questions.length) {
         showQuestion();
       } else {
-        showResult();
+        document.getElementById("progressBar").style.width = "100%";
+        calculateWinner();
+        document.getElementById("questionScreen").classList.add("hidden");
+        document.getElementById("thinkingScreen").classList.remove("hidden");
       }
     }
 
-    function showResult() {
-      document.getElementById("progressBar").style.width = "100%";
+    function calculateWinner() {
+      winner = Object.keys(score).reduce((a, b) => score[a] >= score[b] ? a : b);
+    }
 
-      const winner = Object.keys(score).reduce((a, b) => score[a] > score[b] ? a : b);
+    function showFakeResult() {
       const result = gifts[winner];
 
-      document.getElementById("questionScreen").classList.add("hidden");
-      document.getElementById("resultScreen").classList.remove("hidden");
+      document.getElementById("thinkingScreen").classList.add("hidden");
+      document.getElementById("fakeResultScreen").classList.remove("hidden");
 
-      document.getElementById("resultEmoji").innerText = result.emoji;
-      document.getElementById("resultTitle").innerText = result.title;
-      document.getElementById("resultDescription").innerText = result.description;
+      document.getElementById("fakeEmoji").innerText = result.emoji;
+      document.getElementById("fakeTitle").innerText = result.title;
+      document.getElementById("fakeDescription").innerText = result.description;
+    }
+
+    function showBelgiumTwist() {
+      document.getElementById("fakeResultScreen").classList.add("hidden");
+      document.getElementById("belgiumScreen").classList.remove("hidden");
+    }
+
+    function showFinalReveal() {
+      document.getElementById("belgiumScreen").classList.add("hidden");
+      document.getElementById("finalScreen").classList.remove("hidden");
     }
 
     function resetGame() {
       currentQuestion = 0;
       score = { varen: 0, bonbons: 0, golf: 0 };
-      document.getElementById("resultScreen").classList.add("hidden");
+      winner = "varen";
+
+      document.querySelectorAll("section").forEach(section => {
+        section.classList.add("hidden");
+      });
+
       document.getElementById("intro").classList.remove("hidden");
       document.getElementById("progressBar").style.width = "0%";
     }
